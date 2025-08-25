@@ -28,7 +28,8 @@ pipeline {
         }
         stage('Deploy to Prod') {
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key', keyFileVariable: 'MY_SSH_KEY', usernameVariable: 'username')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key',
+                        keyFileVariable: 'MY_SSH_KEY', usernameVariable: 'username')]) {
                     sh '''
                     # Copy app zip to EC2 instance
                     scp -i $MY_SSH_KEY -o StrictHostKeyChecking=no myapp.zip ${username}@${SERVER_IP}:/home/ec2-user/
@@ -44,4 +45,5 @@ pipeline {
                 }
             }
         }
+    }
 }
