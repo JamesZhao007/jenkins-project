@@ -2,9 +2,6 @@ pipeline {
     agent any
     environment {
         SERVER_IP = withCredentials('prod-server-ip')
-        IMAGE_NAME = 'sanjeevkt720/jenkins-flask-app'
-        IMAGE_TAG = "${IMAGE_NAME}:${env.BUILD_NUMBER}"
-        KUBECONFIG = credentials('kubeconfig-credentials-id')
     }
     stages {
         stage('Checkout') {
